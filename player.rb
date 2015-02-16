@@ -2,8 +2,7 @@ class Player
   def play_turn(warrior)
   	if warrior.feel.enemy?
    		warrior.attack!
-   		warrior.rest until health = full
-   	else 
+   	else
    		warrior.walk!
    	end
   end
