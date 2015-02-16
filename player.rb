@@ -10,7 +10,8 @@ class Player
 
   	if warrior.feel.enemy?
   		warrior.attack!
-  		
+  	elsif warrior.feel.captive?
+  		warrior.rescue!	
   	elsif warrior.health < @health
   		warrior.walk!
   	elsif warrior.health < MAX_HEALTH
