@@ -14,16 +14,16 @@ class Player
 
   	if warrior.feel.enemy?
   		warrior.attack!
-	elsif healing?
+    elsif healing?
   		warrior.rest!
-  	elsif nothing_behind_with_captive?
-  		warrior.walk!(:backward)
-  		puts '1st'
-  	elsif warrior.feel(:backward).captive?
-		@captive_needs_rescuing = "yes"
-  		warrior.rescue!(:backward)
-  	elsif warrior.feel.captive?
-  		warrior.rescue!	
+    elsif warrior.feel.wall?
+      warrior.pivot!  
+  	
+  	#elsif warrior.feel(:backward).captive?
+		#@captive_needs_rescuing = "yes"
+  	#	warrior.rescue!(:backward)
+  	#elsif warrior.feel.captive?
+  	#	warrior.rescue!	
   	elsif taking_damage? && needs_to_heal?
   		warrior.walk!(:backward)
   	elsif needs_to_heal?
@@ -32,6 +32,9 @@ class Player
 	  	else
 	  		warrior.walk!(:backward)
 	  	end
+    #elsif nothing_behind_with_captive?
+     # warrior.walk!(:backward)
+    #  puts '1st'
   	# warrior.walk!(:backward)
 	# warrior.feel(:backward).empty?
    	else
@@ -62,5 +65,6 @@ class Player
 	def healing?
 		warrior.health < MAX_HEALTH && warrior.health > @health
 	end
+  
 
 end
